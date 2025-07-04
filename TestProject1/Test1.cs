@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TestProject1
+﻿namespace TestProject1
 {
     public struct Montant
     {
@@ -116,6 +114,40 @@ namespace TestProject1
 
             // Assert
             var expected = new Montant(value * taux, "USD");
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Convert_OneUsdToEur_ReturnsZeroPointEightFiveEur()
+        {
+            // Arrange
+            const decimal value = 1m;
+            var montant = new Montant(value, "USD");
+            string toCurrency = "EUR";
+            decimal taux = 0.85m;
+
+            // Act
+            Montant result = montant.Convert(toCurrency, taux);
+
+            // Assert
+            var expected = new Montant(value * taux, "EUR");
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Convert_MinusOneHundredUsdToEur_ReturnsMinusEightyFiveEur()
+        {
+            // Arrange
+            const decimal value = -100m;
+            var montant = new Montant(value, "USD");
+            string toCurrency = "EUR";
+            decimal taux = 0.85m;
+
+            // Act
+            Montant result = montant.Convert(toCurrency, taux);
+
+            // Assert
+            var expected = new Montant(value * taux, "EUR");
             Assert.AreEqual(expected, result);
         }
     }

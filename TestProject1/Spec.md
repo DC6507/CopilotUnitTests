@@ -21,7 +21,9 @@ Outil pour convertir un montant d'une devise à une autre. Il utilise les taux d
 - Sachant que le taux de change de l'EUR vers l'USD est de 1.18, convertir 1 EUR en USD doit donner 1.18 USD 
 - Sachant que le taux de change de l'USD vers l'EUR est de 0.85, convertir 1 USD en EUR doit donner 0.85 EUR
 - Sachant que le taux de change de l'USD vers l'EUR est de 0.85, convertir -100 USD en EUR doit donner -85 EUR
+- Sachant que le taux de change du JPY vers l'EUR est de 0.85, convertir -100 USD en EUR doit donner -85 EUR
 
+- Sachant que le taux de change de l'EUR vers l'USD est de 1.18, et le taux de change de l'EUR vers JPY est de 170.23, convertir 1 EUR en USD doit donner 1.18 USD
 ### Règles de conversion
 
 - Les utilisateurs ne saisiront pas des montants de plus de 6 chiffres avant la virgule
