@@ -16,6 +16,7 @@ Outil pour convertir un montant d'une devise à une autre. Il utilise les taux d
 - Convertir 0 GBP en JPY doit donner 0 JPY
 ### Même devise source et cible
 - Convertir 1 EUR en EUR doit donner 1 EUR
+- Convertir 100 USD en USD doit donner 100 USD
 ### Conversions avec un taux de change
 - Sachant que le taux de change de l'EUR vers l'USD est de 1.18, convertir 1 EUR en USD doit donner 1.18 USD 
 - Sachant que le taux de change de l'USD vers l'EUR est de 0.85, convertir 1 USD en EUR doit donner 0.85 EUR

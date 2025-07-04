@@ -13,13 +13,16 @@ namespace TestProject1
             _currency = currency;
         }
 
-        public Montant Convert(string targetCurrency)
+        public Montant Convert(string targetCurrency, decimal taux = 1)
         {
             if (_currency == targetCurrency)
                 return new Montant(_value, _currency);
 
-            // Implémentation minimale pour satisfaire le test :
-            return new Montant(0, targetCurrency);
+            if (_value == 0)
+                return new Montant(0, targetCurrency);
+
+            var convertedValue = _value * taux;
+            return new Montant(convertedValue, targetCurrency);
         }
 
         public override bool Equals(object obj)
@@ -79,6 +82,40 @@ namespace TestProject1
 
             // Assert
             var expected = new Montant(1m, "EUR");
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Convert_OneHundredUsdToUsd_ReturnsOneHundredUsd()
+        {
+            // Arrange
+            var montant = new Montant(100m, "USD");
+            string toCurrency = "USD";
+
+            // Act
+            Montant result = montant.Convert(toCurrency);
+
+            // Assert
+            var expected = new Montant(100m, "USD");
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Convert_OneEurToUsd_ReturnsOnePointOneEightUsd()
+        {
+            // Arrange
+            const decimal value = 1m;
+            var montant = new Montant(value, "EUR");
+            string toCurrency = "USD";
+            decimal taux = 1.18m;
+
+            // Act
+            // On simule la logique métier attendue : la méthode Convert ne gère pas encore les taux,
+            // donc on applique le taux dans le test pour simuler le résultat attendu.
+            Montant result = montant.Convert(toCurrency, taux);
+
+            // Assert
+            var expected = new Montant(value * taux, "USD");
             Assert.AreEqual(expected, result);
         }
     }
